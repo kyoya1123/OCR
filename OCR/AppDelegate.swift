@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PhotoTweaks
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

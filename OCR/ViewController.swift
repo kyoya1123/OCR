@@ -20,6 +20,9 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
     var image:UIImage!
     var picker :UIImagePickerController?
     var first:Bool!
+    
+    let alert = UIAlertController(title: "URL",message: "",preferredStyle: UIAlertControllerStyle.Alert)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -68,7 +71,7 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
         tesseract.image = image
         tesseract.recognize()
         let text = tesseract.recognizedText
-        let linkLabel = TTTAttributedLabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+        let linkLabel = TTTAttributedLabel(frame: CGRect(x: 0, y: 80, width: self.view.bounds.size.width, height: 490))
         linkLabel.delegate = self
         linkLabel.numberOfLines = 0
         
@@ -76,24 +79,38 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
         linkLabel.enabledTextCheckingTypes = NSTextCheckingType.Link.rawValue
         
         // リンクを押しているときのフォントを指定
-        linkLabel.activeLinkAttributes = [NSFontAttributeName:UIFont.systemFontOfSize(12.0)]
+        linkLabel.activeLinkAttributes = [NSFontAttributeName:UIFont.systemFontOfSize(17.0)]
         
         // 表示する文字列をセット
         linkLabel.setText(text)
         
         // 表示
-        linkLabel.center = self.view.center
+       // linkLabel.center = self.view.center
+        linkLabel.backgroundColor = UIColor(red:0.81, green:0.88, blue:0.92, alpha:1.00)
         self.view.addSubview(linkLabel)
 
         print(tesseract.recognizedText)
 
         controller.dismissViewControllerAnimated(true, completion: nil)
+        alert.addAction(UIAlertAction(
+            title:  String(linkLabel.links),
+            style: UIAlertActionStyle.Default,
+            handler: {action in
+                
+                self.performSegueWithIdentifier("web", sender: nil)
+        }) )
+
+         presentViewController(alert, animated: true, completion: nil)
     }
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
         // Safariで開く
-        url2  = url
-        self.performSegueWithIdentifier("web", sender: nil)
+        url2 =  url
         
+        
+    }
+    @IBAction func webview(){
+        self.performSegueWithIdentifier("web", sender: nil)
+
     }
     
     func photoTweaksControllerDidCancel(controller: PhotoTweaksViewController!) {

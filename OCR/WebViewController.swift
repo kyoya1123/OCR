@@ -11,14 +11,16 @@ import UIKit
 class WebViewController: UIViewController,UIWebViewDelegate {
 
     @IBOutlet var webView:UIWebView!
-    
+    @IBOutlet var toolbar: UIToolbar!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        toolbar.backgroundColor = UIColor(red:0.00, green:0.83, blue:0.57, alpha:1.00)
+        
         webView.delegate = self
         let rect:CGRect = self.view.frame
         webView.frame = rect
         webView.scalesPageToFit = true
-        
         
         let url = url2
         let request: NSURLRequest = NSURLRequest(URL: url)
@@ -52,6 +54,9 @@ class WebViewController: UIViewController,UIWebViewDelegate {
     // 再読み込みボタンの処理
     @IBAction func refresh() {
         self.webView?.reload()
+    }
+    @IBAction func dismiss(){
+       self.dismissViewControllerAnimated(true,completion: nil)
     }
     
 }

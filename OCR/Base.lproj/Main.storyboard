@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,16 +18,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pNH-Wb-Hst">
+                                <rect key="frame" x="20" y="20" width="45" height="30"/>
+                                <state key="normal" title="button"/>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UEi-Tz-eKN">
-                                <rect key="frame" x="20" y="20" width="70" height="70"/>
+                                <rect key="frame" x="8" y="12" width="70" height="70"/>
                                 <state key="normal" title="again" image="icon_140840_256.png"/>
                                 <connections>
                                     <action selector="cameraStart" destination="BYZ-38-t0r" eventType="touchUpInside" id="If4-tu-uPy"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pNH-Wb-Hst">
-                                <rect key="frame" x="20" y="20" width="45" height="30"/>
-                                <state key="normal" title="button"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -38,7 +39,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <segue destination="3oe-jG-7ij" kind="modal" identifier="web" id="Jko-Kf-5wL"/>
+                        <segue destination="BMF-9a-YSV" kind="modal" identifier="web" id="Jko-Kf-5wL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -58,39 +59,59 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tOe-W0-viY">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Axb-bi-sc7">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <items>
-                                    <barButtonItem title="戻る" id="DMx-KY-fR4">
-                                        <connections>
-                                            <action selector="back" destination="3oe-jG-7ij" id="1Wr-D8-LdT"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem title="進む" id="qab-gA-5SQ">
-                                        <connections>
-                                            <action selector="forward" destination="3oe-jG-7ij" id="5LG-Op-ecy"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem width="191" style="plain" systemItem="fixedSpace" id="GMD-Iz-nfA"/>
-                                    <barButtonItem systemItem="refresh" id="urh-xf-aoG">
-                                        <connections>
-                                            <action selector="refresh" destination="3oe-jG-7ij" id="u5a-q4-SSO"/>
-                                        </connections>
-                                    </barButtonItem>
+                                    <barButtonItem systemItem="play" id="zDU-ee-YCD"/>
+                                    <barButtonItem title="Item" id="IpE-0y-iD3"/>
                                 </items>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="d64-RY-phe">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="stop" id="tRn-c1-qiY">
+                                <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="dismiss" destination="3oe-jG-7ij" id="nzM-nF-PvO"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="refresh" id="urh-xf-aoG">
+                                <connections>
+                                    <action selector="refresh" destination="3oe-jG-7ij" id="u5a-q4-SSO"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="toolbar" destination="Axb-bi-sc7" id="hHv-YB-tTZ"/>
                         <outlet property="webView" destination="tOe-W0-viY" id="Udf-ty-8AN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eeo-Vr-Psw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1161" y="330"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="8gw-CJ-YfR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BMF-9a-YSV" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ank-sz-VRv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3oe-jG-7ij" kind="relationship" relationship="rootViewController" id="EM5-nk-tia"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Rt-II-GOR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="710" y="323"/>
         </scene>

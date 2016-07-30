@@ -22,6 +22,7 @@ class WebViewController: UIViewController,UIWebViewDelegate {
         webView.frame = rect
         webView.scalesPageToFit = true
         
+     
         let url = url2
         let request: NSURLRequest = NSURLRequest(URL: url)
 

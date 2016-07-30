@@ -20,9 +20,6 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
     var image:UIImage!
     var picker :UIImagePickerController?
     var first:Bool!
-    
-    let alert = UIAlertController(title: "URL",message: "",preferredStyle: UIAlertControllerStyle.Alert)
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,7 +38,7 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
         let sourceType:UIImagePickerControllerSourceType = UIImagePickerControllerSourceType.Camera
         // カメラが利用可能かチェック
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){
-            // インスタンスの作成
+           //  インスタンスの作成
             picker = UIImagePickerController()
             picker!.sourceType = sourceType
             picker!.delegate = self
@@ -87,25 +84,17 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
         // 表示
        // linkLabel.center = self.view.center
         linkLabel.backgroundColor = UIColor(red:0.81, green:0.88, blue:0.92, alpha:1.00)
+        linkLabel.adjustsFontSizeToFitWidth = true
         self.view.addSubview(linkLabel)
 
         print(tesseract.recognizedText)
 
         controller.dismissViewControllerAnimated(true, completion: nil)
-        alert.addAction(UIAlertAction(
-            title:  String(linkLabel.links),
-            style: UIAlertActionStyle.Default,
-            handler: {action in
-                
-                self.performSegueWithIdentifier("web", sender: nil)
-        }) )
-
-         presentViewController(alert, animated: true, completion: nil)
     }
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
         // Safariで開く
-        url2 =  url
-        
+        url2  = url
+       self.performSegueWithIdentifier("web", sender: nil)
         
     }
     @IBAction func webview(){

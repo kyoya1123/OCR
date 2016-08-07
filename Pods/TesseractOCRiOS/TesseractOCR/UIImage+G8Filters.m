@@ -40,15 +40,15 @@ typedef NS_ENUM(NSUInteger, PIXELS) {
     int height = size.height;
     
     // the pixels will be painted to this array
-    uint32_t *pixels = (uint32_t *) malloc(width * height * sizeof(uint32_t));
+    UInt32 *pixels = (UInt32 *) malloc(width * height * sizeof(UInt32));
     
     // clear the pixels so any transparency is preserved
-    memset(pixels, 0, width * height * sizeof(uint32_t));
+    memset(pixels, 0, width * height * sizeof(UInt32));
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     
     // create a context with RGBA pixels
-    CGContextRef context = CGBitmapContextCreate(pixels, width, height, 8, width * sizeof(uint32_t), colorSpace,
+    CGContextRef context = CGBitmapContextCreate(pixels, width, height, 8, width * sizeof(UInt32), colorSpace,
                                                  kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedLast);
     
     // paint the bitmap to our context which will fill in the pixels array
@@ -59,7 +59,7 @@ typedef NS_ENUM(NSUInteger, PIXELS) {
             uint8_t *rgbaPixel = (uint8_t *) &pixels[y * width + x];
             
             // convert to grayscale using recommended method: http://en.wikipedia.org/wiki/Grayscale#Converting_color_to_grayscale
-            uint32_t gray = 0.3 * rgbaPixel[RED] + 0.59 * rgbaPixel[GREEN] + 0.11 * rgbaPixel[BLUE];
+            UInt32 gray = 0.3 * rgbaPixel[RED] + 0.59 * rgbaPixel[GREEN] + 0.11 * rgbaPixel[BLUE];
             
             // set the pixels to gray
             rgbaPixel[RED] = gray;

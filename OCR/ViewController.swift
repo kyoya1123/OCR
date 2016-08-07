@@ -25,6 +25,7 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
         
         first = true
         tesseract.delegate = self
+        
 
     
         // Do any additional setup after loading the view, typically from a nib.
@@ -90,9 +91,12 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
         print(tesseract.recognizedText)
 
         controller.dismissViewControllerAnimated(true, completion: nil)
+    
     }
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
         // Safariで開く
+
+        
         url2  = url
        self.performSegueWithIdentifier("web", sender: nil)
         

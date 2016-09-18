@@ -24,9 +24,9 @@ class WebViewController: UIViewController,UIWebViewDelegate {
         
      
         let url = url2
-        let request: NSURLRequest = NSURLRequest(URL: url)
+        let request: NSURLRequest = NSURLRequest(url: url as! URL)
 
-         webView.loadRequest(request)
+         webView.loadRequest(request as URLRequest)
         // Do any additional setup after loading the view.
     }
 
@@ -34,12 +34,12 @@ class WebViewController: UIViewController,UIWebViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func webViewDidStartLoad(webView: UIWebView) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+    private func webViewDidStartLoad(webView: UIWebView) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         print("indicator on")
     }
-    func webViewDidFinishLoad(webView: UIWebView) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+    private func webViewDidFinishLoad(webView: UIWebView) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         print("indicator off")
     }
     // 戻るボタンの処理
@@ -57,7 +57,7 @@ class WebViewController: UIViewController,UIWebViewDelegate {
         self.webView?.reload()
     }
     @IBAction func dismiss(){
-       self.dismissViewControllerAnimated(true,completion: nil)
+       self.dismiss(animated: true,completion: nil)
     }
     
 }

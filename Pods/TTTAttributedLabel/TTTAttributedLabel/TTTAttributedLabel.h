@@ -117,10 +117,12 @@ IB_DESIGNABLE
 ///-----------------------------
 
 /**
- The receiver's delegate.
+ The receiver's delegat
  
  @discussion A `TTTAttributedLabel` delegate responds to messages sent by tapping on links in the label. You can use the delegate to respond to links referencing a URL, address, phone number, date, or date with a specified time zone and duration.
  */
+@property (readwrite, nonatomic, strong) TTTAttributedLabelLink *activeLink;
+
 @property (nonatomic, unsafe_unretained) IBOutlet id <TTTAttributedLabelDelegate> delegate;
 
 ///--------------------------------------------

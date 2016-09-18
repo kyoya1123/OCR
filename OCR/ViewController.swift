@@ -86,7 +86,7 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
         // リンクを押しているときのフォントを指定
         linkLabel.activeLinkAttributes = [NSFontAttributeName:UIFont.systemFont(ofSize: 17.0)]
         
-        // 表示する文字列をセット
+        // 表示する文字列をセットa
         linkLabel.setText(text)
         
         // 表示

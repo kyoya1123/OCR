@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xcn-iz-dnP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xcn-iz-dnP">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,25 +18,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9v-g3-9Xu" customClass="TTTAttributedLabel">
+                                <frame key="frameInset" minY="216" width="320" height="264"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.14625538790000001" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jQW-Zq-2jl">
-                                <rect key="frame" x="8" y="7" width="70" height="70"/>
-                                <state key="normal" title="again" image="icon_140840_256.png"/>
+                                <frame key="frameInset" minX="57" minY="20" width="207" height="207"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="again" image="cameraIcon.jpg"/>
                                 <connections>
                                     <action selector="cameraStart" destination="xcn-iz-dnP" eventType="touchUpInside" id="VOF-nr-Qrq"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e9y-iz-bNv">
+                                <frame key="frameInset" minX="16" minY="20" width="52" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="question.jpg"/>
+                                <connections>
+                                    <action selector="help" destination="xcn-iz-dnP" eventType="touchUpInside" id="Ghw-ki-Khz"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="irF-gv-c4m"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="linkLabel" destination="g9v-g3-9Xu" id="ceE-QS-diB"/>
                         <segue destination="MwC-dg-Lho" kind="presentation" identifier="web" id="0jo-uU-YHw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="83p-Tl-tTC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="950" y="491"/>
+            <point key="canvasLocation" x="736.875" y="490"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="wzy-C7-Ab2">
@@ -46,62 +64,62 @@
                         <viewControllerLayoutGuide type="bottom" id="FMk-XC-SYa"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="975-nY-hat">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UyW-Q3-Q7D">
-                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                                <frame key="frameInset" minY="64" width="320" height="359"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.28958413004875183" green="0.31462949514389038" blue="0.32950475811958313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4NT-ZK-mC1">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qu8-3x-Cag">
+                                <frame key="frameInset" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem image="back.png" id="bZ2-Bd-tef">
+                                    <barButtonItem image="back.png" id="Ou1-BV-1hM">
                                         <connections>
-                                            <action selector="back" destination="6I5-ek-4oW" id="xoi-CC-uDB"/>
+                                            <action selector="back" destination="6I5-ek-4oW" id="gnA-xS-7cJ"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="13" style="plain" systemItem="fixedSpace" id="a36-RB-YiQ"/>
-                                    <barButtonItem image="forward.png" id="sMX-yg-hP1">
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="ps9-et-VMa"/>
+                                    <barButtonItem image="forward.png" id="I2t-JP-fbG">
                                         <connections>
-                                            <action selector="forward" destination="6I5-ek-4oW" id="d1m-uW-Y96"/>
+                                            <action selector="forward" destination="6I5-ek-4oW" id="AC3-gT-q3D"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="XUX-EW-Dwq"/>
-                                    <barButtonItem systemItem="refresh" id="dvQ-8B-ctw">
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="H4c-0G-DdD"/>
+                                    <barButtonItem systemItem="refresh" id="6Jv-6s-RS1">
                                         <connections>
-                                            <action selector="refresh" destination="6I5-ek-4oW" id="9Sc-GY-Ye7"/>
+                                            <action selector="refresh" destination="6I5-ek-4oW" id="VAM-qC-dU9"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="0Eq-vu-lrH">
                         <barButtonItem key="rightBarButtonItem" systemItem="stop" id="axI-J0-wpX">
-                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="dismiss" destination="6I5-ek-4oW" id="L52-td-dk9"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="toolbar" destination="4NT-ZK-mC1" id="WWu-cz-yoa"/>
+                        <outlet property="toolbar" destination="qu8-3x-Cag" id="6Tk-8G-DJt"/>
                         <outlet property="webView" destination="UyW-Q3-Q7D" id="ajD-Bq-G6U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="saU-QE-f9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1810" y="535"/>
+            <point key="canvasLocation" x="2165.625" y="490"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PnB-6F-Rma">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MwC-dg-Lho" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bOy-gf-bjJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -113,12 +131,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bP5-Yz-sse" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1368" y="491"/>
+            <point key="canvasLocation" x="1423" y="490"/>
         </scene>
     </scenes>
     <resources>
-        <image name="back.png" width="22" height="22"/>
-        <image name="forward.png" width="22" height="22"/>
-        <image name="icon_140840_256.png" width="256" height="256"/>
+        <image name="back.png" width="30" height="19"/>
+        <image name="cameraIcon.jpg" width="512" height="512"/>
+        <image name="forward.png" width="30" height="19"/>
+        <image name="question.jpg" width="421" height="469"/>
     </resources>
 </document>

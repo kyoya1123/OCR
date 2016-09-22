@@ -1,18 +1,21 @@
 PODS:
   - PhotoTweaks (1.0.3)
+  - SVProgressHUD (2.0.3)
   - TesseractOCRiOS (4.0.0)
   - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
   - PhotoTweaks (~> 1.0.3)
+  - SVProgressHUD
   - TesseractOCRiOS (= 4.0.0)
   - TTTAttributedLabel
 
 SPEC CHECKSUMS:
   PhotoTweaks: 17a448f451872fd9c3cc65ec5ca125ccd1b48d11
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   TesseractOCRiOS: 90638afbe43d082433f2e76b384c7901d23956df
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: c0ce2b7c7cdd3d8f5e8cf67d0e2d2fa5d4a4e5c1
+PODFILE CHECKSUM: 7fb18e322e37db593fc5a8109dff5cab060dcb6c
 
 COCOAPODS: 1.0.0

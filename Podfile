@@ -7,13 +7,17 @@ target 'OCR' do
 pod ’TesseractOCRiOS', '4.0.0'
 pod 'TTTAttributedLabel'
 pod 'PhotoTweaks', '~> 1.0.3'
+pod 'SVProgressHUD'
+
 end
 
 target 'OCRTests' do
+pod ’TesseractOCRiOS', '4.0.0'
 
 end
 
 target 'OCRUITests' do
+pod ’TesseractOCRiOS', '4.0.0'
 
 end
 

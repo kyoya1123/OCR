@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import OCR
+
 
 class OCRTests: XCTestCase {
     

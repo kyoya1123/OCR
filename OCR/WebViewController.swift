@@ -12,8 +12,17 @@ class WebViewController: UIViewController,UIWebViewDelegate {
 
     @IBOutlet var webView:UIWebView!
     @IBOutlet var toolbar: UIToolbar!
+    
+    @IBOutlet var   undo: UIBarItem!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let url = url2
+        let request: NSURLRequest = NSURLRequest(url: url as! URL)
+        
+        webView.loadRequest(request as URLRequest)
+
+        
         
         toolbar.backgroundColor = UIColor(red:0.00, green:0.83, blue:0.57, alpha:1.00)
         
@@ -22,25 +31,25 @@ class WebViewController: UIViewController,UIWebViewDelegate {
         webView.frame = rect
         webView.scalesPageToFit = true
         
-     
-        let url = url2
-        let request: NSURLRequest = NSURLRequest(url: url as! URL)
-
-         webView.loadRequest(request as URLRequest)
+        
         // Do any additional setup after loading the view.
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    
+        }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    private func webViewDidStartLoad(webView: UIWebView) {
+    func webViewDidStartLoad(_ webView: UIWebView) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        print("indicator on")
+        
     }
-    private func webViewDidFinishLoad(webView: UIWebView) {
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        print("indicator off")
+        
     }
     // 戻るボタンの処理
     @IBAction func back() {
@@ -56,6 +65,7 @@ class WebViewController: UIViewController,UIWebViewDelegate {
     @IBAction func refresh() {
         self.webView?.reload()
     }
+ 
     @IBAction func dismiss(){
        self.dismiss(animated: true,completion: nil)
     }

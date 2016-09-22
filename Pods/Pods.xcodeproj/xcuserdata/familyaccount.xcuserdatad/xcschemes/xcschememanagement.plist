@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SVProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>TTTAttributedLabel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,32 +42,37 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>542C6DDCF8CB6C847D82ACBC01BA72A2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>645C4C8B86E67C3F25FF28E7C03DE4DF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>684ABEF488A017A38254FCE12071EE8A</key>
+		<key>6C116ACDCE1F56FF6D703403EDC11B30</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AC6D455771D967A351B4B7E35954F809</key>
+		<key>87540D815297301081E2653E9F6CB2CB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B13F400D7EAD5B581190E889B0A70332</key>
+		<key>A00888DB1A8E6975A5D50B357110F01A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E17A4FD1B80489580FA727AD9693146F</key>
+		<key>BF49A5613D953930EB6D4E97FC81CB4A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FE15E0DE07DD31E8C651AB67F09E03AA</key>
+		<key>DD435A3123BCC99F92456129701F5FD2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

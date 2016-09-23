@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 let HistoryData: UserDefaults = UserDefaults.standard
 var URLlist: [String] = []
 var timeList: [String] = []
 
-class HistoryViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+class HistoryViewController: UIViewController,UITableViewDelegate, UITableViewDataSource,GADBannerViewDelegate {
     
     @IBOutlet var table: UITableView!
     @IBOutlet var deleteBtn: UIBarButtonItem!
@@ -20,6 +21,24 @@ class HistoryViewController: UIViewController,UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        var bannerView: GADBannerView = GADBannerView()
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView.frame.origin = CGPoint(x: 0, y: self.view.frame.size.height - bannerView.frame.height)
+        bannerView.frame.size = CGSize(width: self.view.frame.width, height: bannerView.frame.height)
+        
+        bannerView.adUnitID = "ca-app-pub-4998156736658881/4112211858"
+        bannerView.delegate = self
+        bannerView.rootViewController = self
+        let gadRequest: GADRequest = GADRequest()
+        #if DEBUG
+            gadRequest.testDevices = ["595ac722101c364a0f80a658bcfb8b1b"]//テスト時のみ
+        #endif
+        bannerView.load(gadRequest)
+        self.view.addSubview(bannerView)
+        
         
         if URLlist.count == 0{
             self.background()
@@ -29,7 +48,7 @@ class HistoryViewController: UIViewController,UITableViewDelegate, UITableViewDa
             "Cell")
         table.delegate = self
         table.dataSource = self
-       
+        
         self.table.tableFooterView = UIView()
         // Do any additional setup after loading the view.
     }
@@ -53,22 +72,26 @@ class HistoryViewController: UIViewController,UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
+        //        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
         
         let confirmAlert = UIAlertController(title: "このURLを開きますか？", message: "", preferredStyle: UIAlertControllerStyle.alert)
         confirmAlert.addAction(UIAlertAction(title: "アプリ内で開く", style: UIAlertActionStyle.default, handler: {action in
             
             url2 = NSURL(string: URLlist[indexPath.row])
             self.performSegue(withIdentifier: "web2", sender: nil)
+            accessCount += 1
+            HistoryData.set(accessCount, forKey: "access")
         }))
         confirmAlert.addAction(UIAlertAction(title: "Safariで開く", style: UIAlertActionStyle.default, handler: {action in
+            accessCount += 1
+            HistoryData.set(accessCount, forKey: "access")
             let url = NSURL(string: URLlist[indexPath.row])
             if UIApplication.shared.canOpenURL(url as! URL){
                 UIApplication.shared.openURL(url as! URL)
             }
             
         }))
-         confirmAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler:{action in }))
+        confirmAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler:{action in }))
         
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -83,11 +106,11 @@ class HistoryViewController: UIViewController,UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
         
-        
-        cell.timeLabel.text = timeList[indexPath.row]
-        cell.URLLabel.text = URLlist[indexPath.row]
-//        cell.timeLabel.text = timeList[indexPath.row]
-//        cell.URLLabel.text = URLlist[indexPath.row]
+        var reversedURLlist: Array = URLlist.reversed()
+        var reversedTimelist:Array = timeList.reversed()
+        cell.timeLabel.text = reversedTimelist[indexPath.row]
+        cell.URLLabel.text = reversedURLlist[indexPath.row]
+
         return cell
     }
     

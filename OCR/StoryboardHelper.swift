@@ -12,7 +12,7 @@ class StoryboardHelper: NSObject {
     class func adjust() -> UIStoryboard {
         var storyboard = UIStoryboard()
         let height = UIScreen.main.bounds.size.height
-       // storyboard = UIStoryboard(name: "Main", bundle: nil)
+        // storyboard = UIStoryboard(name: "Main", bundle: nil)
         if height == 667 {
             // iPhone6
             storyboard = UIStoryboard(name: "Main", bundle: nil)

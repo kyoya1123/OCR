@@ -34,6 +34,11 @@
 		856853921D16819500CB1287 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856853911D16819500CB1287 /* WebViewController.swift */; };
 		857019211D15640700827830 /* TTTAttributedLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 857019201D15640700827830 /* TTTAttributedLabel.framework */; };
 		85760B5C1D8E3E8600A4C2C1 /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85760B5B1D8E3E8600A4C2C1 /* TesseractOCR.framework */; };
+		857A3EF31D95660E009B97DF /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 857A3EEA1D95660E009B97DF /* SVIndefiniteAnimatedView.m */; };
+		857A3EF41D95660E009B97DF /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 857A3EEC1D95660E009B97DF /* SVProgressAnimatedView.m */; };
+		857A3EF51D95660E009B97DF /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 857A3EEE1D95660E009B97DF /* SVProgressHUD.bundle */; };
+		857A3EF61D95660E009B97DF /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 857A3EF01D95660E009B97DF /* SVProgressHUD.m */; };
+		857A3EF71D95660E009B97DF /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 857A3EF21D95660E009B97DF /* SVRadialGradientLayer.m */; };
 		8583ADBE1D938E6F0076B750 /* left-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8583ADBD1D938E6F0076B750 /* left-arrow.png */; };
 		85C54A751D93802300D6B2C7 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 85C54A741D93802300D6B2C7 /* back.png */; };
 		85C54A771D93804900D6B2C7 /* forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 85C54A761D93804900D6B2C7 /* forward.png */; };
@@ -95,6 +100,17 @@
 		856853911D16819500CB1287 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		857019201D15640700827830 /* TTTAttributedLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TTTAttributedLabel.framework; path = "../../../Library/Developer/Xcode/DerivedData/OCR-drvoioqiueiytqftevlnhvdlswdv/Build/Products/Debug-iphonesimulator/TTTAttributedLabel/TTTAttributedLabel.framework"; sourceTree = "<group>"; };
 		85760B5B1D8E3E8600A4C2C1 /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TesseractOCR.framework; path = "../../../Library/Developer/Xcode/DerivedData/OCR-drvoioqiueiytqftevlnhvdlswdv/Build/Products/Debug-iphoneos/TesseractOCRiOS/TesseractOCR.framework"; sourceTree = "<group>"; };
+		857A3EE91D95660E009B97DF /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		857A3EEA1D95660E009B97DF /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		857A3EEB1D95660E009B97DF /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressAnimatedView.h; sourceTree = "<group>"; };
+		857A3EEC1D95660E009B97DF /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressAnimatedView.m; sourceTree = "<group>"; };
+		857A3EED1D95660E009B97DF /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		857A3EEE1D95660E009B97DF /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		857A3EEF1D95660E009B97DF /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		857A3EF01D95660E009B97DF /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		857A3EF11D95660E009B97DF /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
+		857A3EF21D95660E009B97DF /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		857A3EF81D9566E8009B97DF /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		857F03251D92B30300E510F5 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = "Pods/../build/Debug-iphoneos/SVProgressHUD/SVProgressHUD.framework"; sourceTree = "<group>"; };
 		8583ADBD1D938E6F0076B750 /* left-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left-arrow.png"; sourceTree = "<group>"; };
 		85C54A741D93802300D6B2C7 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
@@ -187,6 +203,24 @@
 			path = Defaults;
 			sourceTree = "<group>";
 		};
+		857A3EE81D95660E009B97DF /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				857A3EE91D95660E009B97DF /* SVIndefiniteAnimatedView.h */,
+				857A3EEA1D95660E009B97DF /* SVIndefiniteAnimatedView.m */,
+				857A3EEB1D95660E009B97DF /* SVProgressAnimatedView.h */,
+				857A3EEC1D95660E009B97DF /* SVProgressAnimatedView.m */,
+				857A3EED1D95660E009B97DF /* SVProgressHUD-Prefix.pch */,
+				857A3EEE1D95660E009B97DF /* SVProgressHUD.bundle */,
+				857A3EEF1D95660E009B97DF /* SVProgressHUD.h */,
+				857A3EF01D95660E009B97DF /* SVProgressHUD.m */,
+				857A3EF11D95660E009B97DF /* SVRadialGradientLayer.h */,
+				857A3EF21D95660E009B97DF /* SVRadialGradientLayer.m */,
+			);
+			name = SVProgressHUD;
+			path = ../SVProgressHUD;
+			sourceTree = "<group>";
+		};
 		85F267A91CDF0BCA00C427AE = {
 			isa = PBXGroup;
 			children = (
@@ -220,7 +254,9 @@
 			isa = PBXGroup;
 			children = (
 				8507E5EF1D3B58100070AC1F /* Defaults */,
+				857A3EE81D95660E009B97DF /* SVProgressHUD */,
 				85F267B51CDF0BCA00C427AE /* AppDelegate.swift */,
+				857A3EF81D9566E8009B97DF /* Bridging-Header.h */,
 				8507E5E71D3B54760070AC1F /* StoryboardHelper.swift */,
 				856853911D16819500CB1287 /* WebViewController.swift */,
 				85F267B71CDF0BCA00C427AE /* ViewController.swift */,
@@ -408,6 +444,7 @@
 				851A96641D90049A00E85833 /* question.jpg in Resources */,
 				8507E5F51D3B58100070AC1F /* Default-736h@3x.png in Resources */,
 				85E378711D9129250032DE15 /* icon.png in Resources */,
+				857A3EF51D95660E009B97DF /* SVProgressHUD.bundle in Resources */,
 				8507E5F41D3B58100070AC1F /* Default-667h@2x.png in Resources */,
 				8507E5F31D3B58100070AC1F /* Default-568h@2x.png in Resources */,
 				85F267BB1CDF0BCA00C427AE /* Main.storyboard in Resources */,
@@ -564,7 +601,11 @@
 				853BE9061D914240002E076F /* CustomTableViewCell.swift in Sources */,
 				85E378731D912B520032DE15 /* HistoryViewController.swift in Sources */,
 				8507E5E81D3B54760070AC1F /* StoryboardHelper.swift in Sources */,
+				857A3EF61D95660E009B97DF /* SVProgressHUD.m in Sources */,
+				857A3EF31D95660E009B97DF /* SVIndefiniteAnimatedView.m in Sources */,
 				85F267B61CDF0BCA00C427AE /* AppDelegate.swift in Sources */,
+				857A3EF41D95660E009B97DF /* SVProgressAnimatedView.m in Sources */,
+				857A3EF71D95660E009B97DF /* SVRadialGradientLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -714,7 +755,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/SVProgressHUD",
 				);
 				INFOPLIST_FILE = OCR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -722,7 +762,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kyoyaYamaguchi.OCR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "OCR/OCR-Bridging-Header.h";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "OCR/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -741,7 +782,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/SVProgressHUD",
 				);
 				INFOPLIST_FILE = OCR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -749,7 +789,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kyoyaYamaguchi.OCR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "OCR/OCR-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "OCR/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

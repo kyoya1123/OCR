@@ -11,12 +11,12 @@ import TesseractOCR
 import PhotoTweaks
 import TTTAttributedLabel
 import GoogleMobileAds
-import SVProgressHUD
 
 
 var url2:NSURL!
-
 var date :String!
+var accessCount: Int = 0
+
 class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControllerDelegate, UIImagePickerControllerDelegate,PhotoTweaksViewControllerDelegate,TTTAttributedLabelDelegate,UITextFieldDelegate,GADBannerViewDelegate,GADInterstitialDelegate{
     
     var tesseract: G8Tesseract = G8Tesseract(language: "eng")
@@ -25,22 +25,21 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
     var first:Bool!
     var linkString:String!
     let delayTime = DispatchTime.now() + Double(Int64(0 * Double(NSEC_PER_SEC)))
-    var count: Int = 0
+    
     @IBOutlet var linkLabel: TTTAttributedLabel!
     
-
-    
- //   let interstitial = GADInterstitial(adUnitID: "ca-app-pub-4998156736658881/9926903055")
- //   let request = GADRequest()
-    
+    var mainInterstitial: GADInterstitial!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if HistoryData.object(forKey: "access") != nil{
+            accessCount = HistoryData.object(forKey: "access") as! Int
+        }
         if HistoryData.object(forKey: "urlHistory") != nil {
-        
-        URLlist = HistoryData.object(forKey: "urlHistory") as! [String]
-        timeList = HistoryData.object(forKey: "timeHistory") as! [String]
+            
+            URLlist = HistoryData.object(forKey: "urlHistory") as! [String]
+            timeList = HistoryData.object(forKey: "timeHistory") as! [String]
         }
         first = true
         tesseract.delegate = self
@@ -55,13 +54,38 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
         bannerView.delegate = self
         bannerView.rootViewController = self
         let gadRequest: GADRequest = GADRequest()
-        gadRequest.testDevices = ["595ac722101c364a0f80a658bcfb8b1b"]//テスト時のみ
+        #if DEBUG
+            gadRequest.testDevices = ["595ac722101c364a0f80a658bcfb8b1b"]//テスト時のみ
+        #endif
         bannerView.load(gadRequest)
         self.view.addSubview(bannerView)
         
-        
+        mainInterstitial = self.create()
         
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    func create() -> GADInterstitial{
+        let intersticial = GADInterstitial(adUnitID: "ca-app-pub-4998156736658881/7704806652")
+        intersticial.delegate = self
+        let request:GADRequest = GADRequest()
+        intersticial.load(request)
+        return intersticial
+    }
+    
+    func interstitialDidDismissScreen(_ ad: GADInterstitial!) {
+        self.mainInterstitial = self.create()
+    }
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if accessCount >= 3{
+            accessCount = 0
+            HistoryData.set(accessCount, forKey: "access")
+            mainInterstitial.present(fromRootViewController: self)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -108,45 +132,46 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
     
     func photoTweaksController(_ controller: PhotoTweaksViewController!, didFinishWithCroppedImage croppedImage: UIImage!) {
         
-    
+        
         SVProgressHUD.show(withStatus: "Loading...")
-       
-                
+        
+        
         dispatch_async_global {
-        
-        self.image = croppedImage
-        self.tesseract.image = self.image
-        self.tesseract.recognize()
-        let text: String! = self.tesseract.recognizedText
-        self.linkLabel.delegate = self
-        self.linkLabel.numberOfLines = 0
-        
-        // セットした文字列からURLを見つけてくれるように設定
-        self.linkLabel.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
-        // リンクを押しているときのフォントを指定
-        self.linkLabel.activeLinkAttributes = [NSFontAttributeName:UIFont.systemFont(ofSize: 17.0)]
-        self.linkLabel.adjustsFontSizeToFitWidth = true
-        
-        print(self.linkLabel.text!)
-        
-        
-        controller.dismiss(animated: true, completion: nil)
-        
-        
-        let URLstring = self.pickUpURLFromString(string: text) as! [String]
-        if URLstring.count > 0 {
-            self.linkLabel.setText(URLstring[0])
-            self.linkString = URLstring[0]
             
-        }else{
-            let alertView = UIAlertController(title: "", message: "URLが検出されませんでした", preferredStyle: UIAlertControllerStyle.alert)
-            alertView.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {action in
-                self.openPicker()
-            }))
-            self.present(alertView, animated: true, completion: nil)
-        }
+            self.image = croppedImage
+            self.tesseract.image = self.image
+            self.tesseract.recognize()
+            let text: String! = self.tesseract.recognizedText
+            self.linkLabel.delegate = self
+            self.linkLabel.numberOfLines = 0
+            
+            // セットした文字列からURLを見つけてくれるように設定
+            self.linkLabel.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
+            // リンクを押しているときのフォントを指定
+            self.linkLabel.activeLinkAttributes = [NSFontAttributeName:UIFont.systemFont(ofSize: 17.0)]
+            self.linkLabel.adjustsFontSizeToFitWidth = true
+            
+            print(self.linkLabel.text!)
+            
+            
+            controller.dismiss(animated: true, completion: nil)
+            
+            
             self.dispatch_async_main {
                 SVProgressHUD.dismiss()
+                let URLstring = self.pickUpURLFromString(string: text) as! [String]
+                if URLstring.count > 0 {
+                    self.linkLabel.setText(URLstring[0])
+                    self.linkString = URLstring[0]
+                    
+                }else{
+                    let alertView = UIAlertController(title: "", message: "URLが検出されませんでした", preferredStyle: UIAlertControllerStyle.alert)
+                    alertView.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {action in
+                        self.openPicker()
+                    }))
+                    self.present(alertView, animated: true, completion: nil)
+                }
+                
             }
         }
     }
@@ -158,7 +183,7 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
     func dispatch_async_global(block: @escaping () -> ()) {
         DispatchQueue.global(qos: .default).async(execute: block)
     }
-
+    
     
     
     func pickUpURLFromString(string: String) -> NSArray {
@@ -208,7 +233,18 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
             HistoryData.set(URLlist, forKey: "urlHistory")
             HistoryData.set(timeList, forKey: "timeHistory")
             
+            self.linkLabel.text = confirmAlert.textFields?[0].text
+            self.linkLabel.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
+            self.linkLabel.activeLinkAttributes = [NSFontAttributeName:UIFont.systemFont(ofSize: 17.0)]
+            self.linkLabel.adjustsFontSizeToFitWidth = true
             
+            let URLstring = self.pickUpURLFromString(string: (confirmAlert.textFields?[0].text)!) as! [String]
+            if URLstring.count > 0 {
+                self.linkString = URLstring[0]
+                
+            }
+            accessCount += 1
+            HistoryData.set(accessCount, forKey: "access")
             self.performSegue(withIdentifier: "web", sender: nil)
             
         }))
@@ -218,10 +254,12 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
             URLlist.append((confirmAlert.textFields?[0].text)!)
             HistoryData.set(URLlist, forKey: "urlHistory")
             HistoryData.set(timeList, forKey: "timeHistory")
+            accessCount += 1
+            HistoryData.set(accessCount, forKey: "access")
             if UIApplication.shared.canOpenURL(url as! URL){
                 UIApplication.shared.openURL(url as! URL)
             }
-
+            
         }))
         confirmAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: {action in }))
         confirmAlert.addTextField(configurationHandler: {(textField:UITextField!) -> Void in
@@ -256,7 +294,7 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
         }
     }
     @IBAction func help(){
-        let helpAlert = UIAlertController(title: "撮影時の注意点", message: "・影が入らないようにしてください\n・平らな場所で撮影してください\n・正面、真上から撮影してください", preferredStyle: UIAlertControllerStyle.alert)
+        let helpAlert = UIAlertController(title: "注意点", message: "・影が入らないようにしてください\n・平らな場所で撮影してください\n・正面、真上から撮影してください\n・編集をした方が読み取りが早いです", preferredStyle: UIAlertControllerStyle.alert)
         helpAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {action in}))
         present(helpAlert, animated: true, completion: nil)
     }

@@ -33,6 +33,8 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         if HistoryData.object(forKey: "access") != nil{
             accessCount = HistoryData.object(forKey: "access") as! Int
         }
@@ -80,6 +82,8 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         
         if accessCount >= 3{
             accessCount = 0
@@ -133,11 +137,11 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
     func photoTweaksController(_ controller: PhotoTweaksViewController!, didFinishWithCroppedImage croppedImage: UIImage!) {
         
         
-        SVProgressHUD.show(withStatus: "Loading...")
+//        SVProgressHUD.show(withStatus: "Loading...")
         
         
-        dispatch_async_global {
-            
+//        dispatch_async_global {
+        
             self.image = croppedImage
             self.tesseract.image = self.image
             self.tesseract.recognize()
@@ -154,14 +158,13 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
             print(self.linkLabel.text!)
             
             
-            controller.dismiss(animated: true, completion: nil)
-            
-            
-            self.dispatch_async_main {
-                SVProgressHUD.dismiss()
+//            self.dispatch_async_main {
+//                SVProgressHUD.dismiss()
+                controller.dismiss(animated: true, completion: nil)
+
                 let URLstring = self.pickUpURLFromString(string: text) as! [String]
                 if URLstring.count > 0 {
-                    self.linkLabel.setText(URLstring[0])
+                                        self.linkLabel.setText(URLstring[0])
                     self.linkString = URLstring[0]
                     
                 }else{
@@ -172,8 +175,8 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
                     self.present(alertView, animated: true, completion: nil)
                 }
                 
-            }
-        }
+//            }
+//        }
     }
     
     func dispatch_async_main(block: @escaping () -> ()) {
@@ -278,6 +281,7 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        
     }
     
     
@@ -294,7 +298,7 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
         }
     }
     @IBAction func help(){
-        let helpAlert = UIAlertController(title: "注意点", message: "・影が入らないようにしてください\n・平らな場所で撮影してください\n・正面、真上から撮影してください\n・編集をした方が読み取りが早いです", preferredStyle: UIAlertControllerStyle.alert)
+        let helpAlert = UIAlertController(title: "注意点", message: "・影が入らないようにしてください\n・平らな場所で撮影してください\n・正面、真上から撮影してください\n・編集をした方が読み取りが早いです\n・http://のみの対応です", preferredStyle: UIAlertControllerStyle.alert)
         helpAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {action in}))
         present(helpAlert, animated: true, completion: nil)
     }

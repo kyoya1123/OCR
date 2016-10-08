@@ -25,9 +25,9 @@
 		851A965C1D8FF28700E85833 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 851A965B1D8FF28700E85833 /* StoreKit.framework */; };
 		851A965E1D8FF28C00E85833 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 851A965D1D8FF28C00E85833 /* SystemConfiguration.framework */; };
 		851A96601D8FF2C300E85833 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 851A965F1D8FF2C300E85833 /* GoogleMobileAds.framework */; };
-		851A96641D90049A00E85833 /* question.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 851A96631D90049A00E85833 /* question.jpg */; };
 		852004C91CF1900F00A930F8 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 852004C81CF1900F00A930F8 /* tessdata */; };
 		852BC0B91D8EE3690058F152 /* cameraIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 852BC0B81D8EE3690058F152 /* cameraIcon.jpg */; };
+		853BE5BA1D96856C006E92CE /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 853BE5B91D96856C006E92CE /* icon.png */; };
 		853BE9061D914240002E076F /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853BE9041D914240002E076F /* CustomTableViewCell.swift */; };
 		853BE9071D914240002E076F /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 853BE9051D914240002E076F /* CustomTableViewCell.xib */; };
 		855EEB561D4AFD46006B087F /* 3.5inch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 855EEB551D4AFD46006B087F /* 3.5inch.storyboard */; };
@@ -42,7 +42,7 @@
 		8583ADBE1D938E6F0076B750 /* left-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8583ADBD1D938E6F0076B750 /* left-arrow.png */; };
 		85C54A751D93802300D6B2C7 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 85C54A741D93802300D6B2C7 /* back.png */; };
 		85C54A771D93804900D6B2C7 /* forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 85C54A761D93804900D6B2C7 /* forward.png */; };
-		85E378711D9129250032DE15 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E378701D9129250032DE15 /* icon.png */; };
+		85E214C91D96336400258F91 /* question.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E214C81D96336400258F91 /* question.png */; };
 		85E378731D912B520032DE15 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E378721D912B520032DE15 /* HistoryViewController.swift */; };
 		85F267B61CDF0BCA00C427AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F267B51CDF0BCA00C427AE /* AppDelegate.swift */; };
 		85F267B81CDF0BCA00C427AE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F267B71CDF0BCA00C427AE /* ViewController.swift */; };
@@ -90,10 +90,10 @@
 		851A965B1D8FF28700E85833 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		851A965D1D8FF28C00E85833 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		851A965F1D8FF2C300E85833 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
-		851A96631D90049A00E85833 /* question.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = question.jpg; sourceTree = "<group>"; };
 		852004C81CF1900F00A930F8 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		852004CA1CF19B5E00A930F8 /* TTTAttributedLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TTTAttributedLabel.framework; path = "Pods/../build/Debug-iphoneos/TTTAttributedLabel/TTTAttributedLabel.framework"; sourceTree = "<group>"; };
 		852BC0B81D8EE3690058F152 /* cameraIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cameraIcon.jpg; sourceTree = "<group>"; };
+		853BE5B91D96856C006E92CE /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		853BE9041D914240002E076F /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		853BE9051D914240002E076F /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		855EEB551D4AFD46006B087F /* 3.5inch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = 3.5inch.storyboard; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 		8583ADBD1D938E6F0076B750 /* left-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left-arrow.png"; sourceTree = "<group>"; };
 		85C54A741D93802300D6B2C7 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		85C54A761D93804900D6B2C7 /* forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forward.png; sourceTree = "<group>"; };
-		85E378701D9129250032DE15 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		85E214C81D96336400258F91 /* question.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = question.png; sourceTree = "<group>"; };
 		85E378721D912B520032DE15 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		85F267B21CDF0BCA00C427AE /* OCR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85F267B51CDF0BCA00C427AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -225,11 +225,11 @@
 			isa = PBXGroup;
 			children = (
 				852BC0B81D8EE3690058F152 /* cameraIcon.jpg */,
-				851A96631D90049A00E85833 /* question.jpg */,
-				85E378701D9129250032DE15 /* icon.png */,
 				85C54A741D93802300D6B2C7 /* back.png */,
 				85C54A761D93804900D6B2C7 /* forward.png */,
 				8583ADBD1D938E6F0076B750 /* left-arrow.png */,
+				853BE5B91D96856C006E92CE /* icon.png */,
+				85E214C81D96336400258F91 /* question.png */,
 				851A965F1D8FF2C300E85833 /* GoogleMobileAds.framework */,
 				85F267B41CDF0BCA00C427AE /* OCR */,
 				85F267C91CDF0BCB00C427AE /* OCRTests */,
@@ -441,11 +441,11 @@
 				855EEB561D4AFD46006B087F /* 3.5inch.storyboard in Resources */,
 				852BC0B91D8EE3690058F152 /* cameraIcon.jpg in Resources */,
 				85C54A771D93804900D6B2C7 /* forward.png in Resources */,
-				851A96641D90049A00E85833 /* question.jpg in Resources */,
 				8507E5F51D3B58100070AC1F /* Default-736h@3x.png in Resources */,
-				85E378711D9129250032DE15 /* icon.png in Resources */,
 				857A3EF51D95660E009B97DF /* SVProgressHUD.bundle in Resources */,
 				8507E5F41D3B58100070AC1F /* Default-667h@2x.png in Resources */,
+				85E214C91D96336400258F91 /* question.png in Resources */,
+				853BE5BA1D96856C006E92CE /* icon.png in Resources */,
 				8507E5F31D3B58100070AC1F /* Default-568h@2x.png in Resources */,
 				85F267BB1CDF0BCA00C427AE /* Main.storyboard in Resources */,
 				8583ADBE1D938E6F0076B750 /* left-arrow.png in Resources */,
@@ -751,6 +751,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3X7LEN654Y;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -778,6 +779,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3X7LEN654Y;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

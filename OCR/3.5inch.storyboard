@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9v-g3-9Xu" customClass="TTTAttributedLabel">
-                                <frame key="frameInset" minX="16" minY="216" width="304" height="264"/>
+                                <frame key="frameInset" minX="16" minY="216" width="304" height="214"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.14625538790000001" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -32,14 +32,6 @@
                                 <state key="normal" title="again" image="cameraIcon.jpg"/>
                                 <connections>
                                     <action selector="cameraStart" destination="xcn-iz-dnP" eventType="touchUpInside" id="VOF-nr-Qrq"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e9y-iz-bNv">
-                                <frame key="frameInset" minX="16" minY="28" width="44" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="question.jpg"/>
-                                <connections>
-                                    <action selector="help" destination="xcn-iz-dnP" eventType="touchUpInside" id="Ghw-ki-Khz"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRJ-Yv-oNi">
@@ -58,6 +50,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ws9-bm-8kX">
+                                <frame key="frameInset" minX="16" minY="430" width="304" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.82002411909999995" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e9y-iz-bNv">
+                                <frame key="frameInset" minX="16" minY="24" width="51" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="question.png"/>
+                                <connections>
+                                    <action selector="help" destination="xcn-iz-dnP" eventType="touchUpInside" id="Ghw-ki-Khz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -69,7 +77,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="83p-Tl-tTC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="473" y="490"/>
+            <point key="canvasLocation" x="472.5" y="490"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="wzy-C7-Ab2">
@@ -227,7 +235,7 @@
         <image name="forward.png" width="30" height="19"/>
         <image name="icon.png" width="421" height="421"/>
         <image name="left-arrow.png" width="24" height="24"/>
-        <image name="question.jpg" width="421" height="469"/>
+        <image name="question.png" width="421" height="421"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="0jo-uU-YHw"/>

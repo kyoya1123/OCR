@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.5</string>
+	<string>1.0.9</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -29,8 +29,14 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>広告に使用します</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>広告に使用します</string>
 	<key>NSCameraUsageDescription</key>
 	<string>カメラでの撮影に必要です</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>広告に使用します</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

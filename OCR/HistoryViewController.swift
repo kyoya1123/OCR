@@ -23,6 +23,7 @@ class HistoryViewController: UIViewController,UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         
         
+    
         
         var bannerView: GADBannerView = GADBannerView()
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
@@ -54,6 +55,9 @@ class HistoryViewController: UIViewController,UITableViewDelegate, UITableViewDa
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
         if let indexPath = table.indexPathForSelectedRow {
             table.deselectRow(at: indexPath, animated: true)
         }

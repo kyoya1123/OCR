@@ -19,6 +19,8 @@ class WebViewController: UIViewController,UIWebViewDelegate,GADBannerViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         let url = url2
         let request: NSURLRequest = NSURLRequest(url: url as! URL)
         
@@ -38,7 +40,8 @@ class WebViewController: UIViewController,UIWebViewDelegate,GADBannerViewDelegat
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+//        self.navigationItem.hidesBackButton = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -70,6 +73,7 @@ class WebViewController: UIViewController,UIWebViewDelegate,GADBannerViewDelegat
     
     @IBAction func dismiss(){
         self.dismiss(animated: true,completion: nil)
+        print("aasfaa")
     }
     
 }

@@ -7,39 +7,24 @@
 //
 
 import UIKit
-import GoogleMobileAds
 
 let HistoryData: UserDefaults = UserDefaults.standard
 var URLlist: [String] = []
 var timeList: [String] = []
 
-class HistoryViewController: UIViewController,UITableViewDelegate, UITableViewDataSource,GADBannerViewDelegate {
+class HistoryViewController: UIViewController,UITableViewDelegate, UITableViewDataSource{
     
     @IBOutlet var table: UITableView!
     @IBOutlet var deleteBtn: UIBarButtonItem!
     
+    var reversedURLlist: [String] = []
+    var reversedTimelist: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-    
-        
-        var bannerView: GADBannerView = GADBannerView()
-        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        bannerView.frame.origin = CGPoint(x: 0, y: self.view.frame.size.height - bannerView.frame.height)
-        bannerView.frame.size = CGSize(width: self.view.frame.width, height: bannerView.frame.height)
-        
-        bannerView.adUnitID = "ca-app-pub-4998156736658881/4112211858"
-        bannerView.delegate = self
-        bannerView.rootViewController = self
-        let gadRequest: GADRequest = GADRequest()
-        #if DEBUG
-            gadRequest.testDevices = ["595ac722101c364a0f80a658bcfb8b1b"]//テスト時のみ
-        #endif
-        bannerView.load(gadRequest)
-        self.view.addSubview(bannerView)
-        
+        reversedURLlist = URLlist.reversed()
+        reversedTimelist = timeList.reversed()
         
         if URLlist.count == 0{
             self.background()
@@ -67,7 +52,7 @@ class HistoryViewController: UIViewController,UITableViewDelegate, UITableViewDa
         label.frame = CGRect(x: 83, y: 265, width: 155, height: 39)
         label.textAlignment = NSTextAlignment.center
         label.font = UIFont(name: "System", size: 20)
-        label.text = "There are no history"
+        label.text = NSLocalizedString("noHistory", comment: "")
         label.textColor = UIColor.lightGray
         table.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.5)
         table.backgroundView = label
@@ -78,22 +63,21 @@ class HistoryViewController: UIViewController,UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
         
-        let confirmAlert = UIAlertController(title: "このURLを開きますか？", message: "", preferredStyle: UIAlertControllerStyle.alert)
-        confirmAlert.addAction(UIAlertAction(title: "アプリ内で開く", style: UIAlertActionStyle.default, handler: {action in
+        let confirmAlert = UIAlertController(title: NSLocalizedString("open?", comment: ""), message: "", preferredStyle: UIAlertControllerStyle.alert)
+        confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("inApplication", comment: ""), style: UIAlertActionStyle.default, handler: {action in
             
-            url2 = NSURL(string: URLlist[indexPath.row])
+            url2 = NSURL(string: self.reversedURLlist[indexPath.row])
             self.performSegue(withIdentifier: "web2", sender: nil)
-            accessCount += 1
-            HistoryData.set(accessCount, forKey: "access")
         }))
-        confirmAlert.addAction(UIAlertAction(title: "Safariで開く", style: UIAlertActionStyle.default, handler: {action in
-            accessCount += 1
-            HistoryData.set(accessCount, forKey: "access")
+        confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("inSafari", comment: ""), style: UIAlertActionStyle.default, handler: {action in
             let url = NSURL(string: URLlist[indexPath.row])
             if UIApplication.shared.canOpenURL(url as! URL){
                 UIApplication.shared.openURL(url as! URL)
             }
             
+        }))
+        confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("AlertShare", comment: ""),style: UIAlertActionStyle.default, handler: {action in
+            self.share(linkString: self.reversedURLlist[indexPath.row])
         }))
         confirmAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler:{action in }))
         
@@ -110,22 +94,19 @@ class HistoryViewController: UIViewController,UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
         
-        var reversedURLlist: Array = URLlist.reversed()
-        var reversedTimelist:Array = timeList.reversed()
         cell.timeLabel.text = reversedTimelist[indexPath.row]
         cell.URLLabel.text = reversedURLlist[indexPath.row]
 
         return cell
     }
     
-    @IBAction func back(){
-        self.dismiss(animated: true, completion: nil)
-    }
     @IBAction func delete(){
-        let alert = UIAlertController(title: "履歴を削除します", message: "本当によろしいですか？", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let alert = UIAlertController(title: NSLocalizedString("delete", comment: ""), message: NSLocalizedString("sure?", comment: ""), preferredStyle: UIAlertControllerStyle.actionSheet)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.destructive, handler: {action in
             timeList.removeAll()
             URLlist.removeAll()
+            self.reversedTimelist.removeAll()
+            self.reversedURLlist.removeAll()
             HistoryData.removeObject(forKey: "urlHistory")
             HistoryData.removeObject(forKey: "timeHistory")
             HistoryData.synchronize()
@@ -136,14 +117,30 @@ class HistoryViewController: UIViewController,UITableViewDelegate, UITableViewDa
         present(alert, animated: true, completion: nil)
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    func share(linkString: String){
+        let adText = NSLocalizedString("share",comment: "")
+        let shareWebsite = linkString + "\n"
+        
+        let activityItems = [shareWebsite,adText] as [Any]
+        
+        // 初期化処理
+        let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        
+        // 使用しないアクティビティタイプ
+        let excludedActivityTypes = [
+            UIActivityType.print,
+            UIActivityType.assignToContact,
+            UIActivityType.saveToCameraRoll,
+            UIActivityType.addToReadingList,
+            UIActivityType.airDrop,
+            UIActivityType.copyToPasteboard
+        ]
+        
+        activityVC.excludedActivityTypes = excludedActivityTypes
+        
+        // UIActivityViewControllerを表示
+        self.present(activityVC, animated: true, completion: nil)
+
+    }
     
 }

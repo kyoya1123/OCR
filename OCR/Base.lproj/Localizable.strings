@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  OCR
+
+  Created by Family Account on 2016/10/09.
+  Copyright © 2016年 Family Account. All rights reserved.
+*/
+"AlertShare" = "Share";
+"share" = "Detected by Fetch! URL　　http://prt.nu/2/AppStore";
+"notDetected" = "URL is not detected";
+"OK?" = "Is this URL OK?";
+"inApplication" = "Open in application";
+"inSafari" =  "Open in Safari";
+"notice" = "notice";
+"noticeAlertMessage" = "・No Shade\n・Take a photo on the flat place\n・Take a photo from directly above \n・Faster if you trim unnecessary part of photo\n・Available only starts with http://";
+"noHistory" = "No history";
+"open?" = "Do you want to open this URL?";
+"delete" = "Delete history log";
+"sure?" = "Are you sure?";

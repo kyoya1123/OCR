@@ -7,7 +7,7 @@ target 'OCR' do
 pod ’TesseractOCRiOS', '4.0.0'
 pod 'TTTAttributedLabel'
 pod 'PhotoTweaks', '~> 1.0.3'
-
+pod 'Firebase/Core'
 end
 
 target 'OCRTests' do

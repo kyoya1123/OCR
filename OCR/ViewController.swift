@@ -10,14 +10,13 @@ import UIKit
 import TesseractOCR
 import PhotoTweaks
 import TTTAttributedLabel
-import GoogleMobileAds
 
 
 var url2:NSURL!
 var date :String!
-var accessCount: Int = 0
 
-class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControllerDelegate, UIImagePickerControllerDelegate,PhotoTweaksViewControllerDelegate,TTTAttributedLabelDelegate,UITextFieldDelegate,GADBannerViewDelegate,GADInterstitialDelegate{
+class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControllerDelegate, UIImagePickerControllerDelegate,PhotoTweaksViewControllerDelegate,TTTAttributedLabelDelegate,UITextFieldDelegate{
+    
     
     var tesseract: G8Tesseract = G8Tesseract(language: "eng")
     var image:UIImage!
@@ -27,17 +26,13 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
     let delayTime = DispatchTime.now() + Double(Int64(0 * Double(NSEC_PER_SEC)))
     
     @IBOutlet var linkLabel: TTTAttributedLabel!
-    
-    var mainInterstitial: GADInterstitial!
+    @IBOutlet var shareBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        shareBtn.isEnabled = false
         
-        
-        if HistoryData.object(forKey: "access") != nil{
-            accessCount = HistoryData.object(forKey: "access") as! Int
-        }
         if HistoryData.object(forKey: "urlHistory") != nil {
             
             URLlist = HistoryData.object(forKey: "urlHistory") as! [String]
@@ -46,50 +41,14 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
         first = true
         tesseract.delegate = self
         
-        //広告
-        var bannerView: GADBannerView = GADBannerView()
-        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        bannerView.frame.origin = CGPoint(x: 0, y: self.view.frame.size.height - bannerView.frame.height)
-        bannerView.frame.size = CGSize(width: self.view.frame.width, height: bannerView.frame.height)
-        
-        bannerView.adUnitID = "ca-app-pub-4998156736658881/3439717453"
-        bannerView.delegate = self
-        bannerView.rootViewController = self
-        let gadRequest: GADRequest = GADRequest()
-        #if DEBUG
-            gadRequest.testDevices = ["595ac722101c364a0f80a658bcfb8b1b"]//テスト時のみ
-        #endif
-        bannerView.load(gadRequest)
-        self.view.addSubview(bannerView)
-        
-        mainInterstitial = self.create()
-        
         // Do any additional setup after loading the view, typically from a nib.
     }
-    func create() -> GADInterstitial{
-        let intersticial = GADInterstitial(adUnitID: "ca-app-pub-4998156736658881/7704806652")
-        intersticial.delegate = self
-        let request:GADRequest = GADRequest()
-        intersticial.load(request)
-        return intersticial
-    }
-    
-    func interstitialDidDismissScreen(_ ad: GADInterstitial!) {
-        self.mainInterstitial = self.create()
-    }
-    
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
-        if accessCount >= 3{
-            accessCount = 0
-            HistoryData.set(accessCount, forKey: "access")
-            mainInterstitial.present(fromRootViewController: self)
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -166,9 +125,9 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
                 if URLstring.count > 0 {
                                         self.linkLabel.setText(URLstring[0])
                     self.linkString = URLstring[0]
-                    
+                    shareBtn.isEnabled = true
                 }else{
-                    let alertView = UIAlertController(title: "", message: "URLが検出されませんでした", preferredStyle: UIAlertControllerStyle.alert)
+                    let alertView = UIAlertController(title: "", message: NSLocalizedString("notDetected", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
                     alertView.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {action in
                         self.openPicker()
                     }))
@@ -227,9 +186,9 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
     
     func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
         
-        let confirmAlert = UIAlertController(title: "このURLでよろしいですか？", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        let confirmAlert = UIAlertController(title: NSLocalizedString("OK?", comment: ""), message: "", preferredStyle: UIAlertControllerStyle.alert)
         
-        confirmAlert.addAction(UIAlertAction(title: "アプリ内で開く", style: UIAlertActionStyle.default, handler: {action in
+        confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("inApplication", comment: ""), style: UIAlertActionStyle.default, handler: {action in
             url2 = NSURL(string: (confirmAlert.textFields?[0].text)!)
             timeList.append(self.time())
             URLlist.append((confirmAlert.textFields?[0].text)!)
@@ -246,19 +205,15 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
                 self.linkString = URLstring[0]
                 
             }
-            accessCount += 1
-            HistoryData.set(accessCount, forKey: "access")
             self.performSegue(withIdentifier: "web", sender: nil)
             
         }))
-        confirmAlert.addAction(UIAlertAction(title: "Safariで開く", style: UIAlertActionStyle.default, handler: {action in
+        confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("inSafari", comment: ""), style: UIAlertActionStyle.default, handler: {action in
             let url = NSURL(string: (confirmAlert.textFields?[0].text)!)
             timeList.append(self.time())
             URLlist.append((confirmAlert.textFields?[0].text)!)
             HistoryData.set(URLlist, forKey: "urlHistory")
             HistoryData.set(timeList, forKey: "timeHistory")
-            accessCount += 1
-            HistoryData.set(accessCount, forKey: "access")
             if UIApplication.shared.canOpenURL(url as! URL){
                 UIApplication.shared.openURL(url as! URL)
             }
@@ -298,9 +253,36 @@ class ViewController: UIViewController, G8TesseractDelegate ,UINavigationControl
         }
     }
     @IBAction func help(){
-        let helpAlert = UIAlertController(title: "注意点", message: "・影が入らないようにしてください\n・平らな場所で撮影してください\n・正面、真上から撮影してください\n・編集をした方が読み取りが早いです\n・http://のみの対応です", preferredStyle: UIAlertControllerStyle.alert)
+        let helpAlert = UIAlertController(title: NSLocalizedString("notice", comment: ""), message: NSLocalizedString("noticeAlertMessage", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
         helpAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {action in}))
         present(helpAlert, animated: true, completion: nil)
+    }
+    
+    @IBAction func share() {
+        
+        // 共有する項目
+        let adText = NSLocalizedString("share",comment: "")
+        let shareWebsite = linkString + "\n"
+        
+        let activityItems = [shareWebsite,adText] as [Any]
+        
+        // 初期化処理
+        let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        
+        // 使用しないアクティビティタイプ
+        let excludedActivityTypes = [
+            UIActivityType.print,
+            UIActivityType.assignToContact,
+            UIActivityType.saveToCameraRoll,
+            UIActivityType.addToReadingList,
+            UIActivityType.airDrop,
+            UIActivityType.copyToPasteboard
+        ]
+        
+        activityVC.excludedActivityTypes = excludedActivityTypes
+        
+        // UIActivityViewControllerを表示
+        self.present(activityVC, animated: true, completion: nil)
     }
     
     func openPicker(){

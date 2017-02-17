@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  OCR
+
+  Created by Family Account on 2016/10/09.
+  Copyright © 2016年 Family Account. All rights reserved.
+*/
+"AlertShare" = "共有する";
+"share" = "Fetch! URLで検出。　http://prt.nu/4/AppStore";
+"notDetected" = "URLが検出されませんでした";
+"OK?" = "このURLでよろしいですか？";
+"inApplication" = "アプリ内で開く";
+"inSafari" =  "Safariで開く";
+"notice" = "注意点";
+"noticeAlertMessage" = "・影が入らないようにしてください\n・平らな場所で撮影してください\n・正面、真上から撮影してください\n・編集をした方が読み取りが早いです\n・http://のみの対応です";
+"noHistory" = "履歴がありません";
+"open?" = "このURLを開きますか？";
+"delete" = "履歴を削除";
+"sure?" = "よろしいですか？";

@@ -8,6 +8,7 @@
 
 import UIKit
 import PhotoTweaks
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,8 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //        window!.rootViewController = storyboard.instantiateInitialViewController()! as UIViewController
         self.window?.makeKeyAndVisible()
         // Override point for customization after application launch.
-        
-        
+        FIRApp.configure()
+                
         return true
     }
     

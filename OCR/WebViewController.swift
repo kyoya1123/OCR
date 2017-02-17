@@ -7,17 +7,20 @@
 //
 
 import UIKit
-import GoogleMobileAds
 
-
-
-class WebViewController: UIViewController,UIWebViewDelegate,GADBannerViewDelegate {
+class WebViewController: UIViewController,UIWebViewDelegate{
     
     @IBOutlet var webView:UIWebView!
     @IBOutlet var toolbar: UIToolbar!
-    
+    @IBOutlet var forwardBtn: UIBarButtonItem!
+    @IBOutlet var backBtn: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.backBtn.isEnabled = self.webView!.canGoBack
+        self.forwardBtn.isEnabled = self.webView!.canGoForward
+        
+        
         
         
         
@@ -50,11 +53,16 @@ class WebViewController: UIViewController,UIWebViewDelegate,GADBannerViewDelegat
     }
     func webViewDidStartLoad(_ webView: UIWebView) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        self.backBtn.isEnabled = self.webView!.canGoBack
+        self.forwardBtn.isEnabled = self.webView!.canGoForward
+
         
     }
     func webViewDidFinishLoad(_ webView: UIWebView) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        
+        self.backBtn.isEnabled = self.webView!.canGoBack
+        self.forwardBtn.isEnabled = self.webView!.canGoForward
+
     }
     // 戻るボタンの処理
     @IBAction func back() {
@@ -73,7 +81,6 @@ class WebViewController: UIViewController,UIWebViewDelegate,GADBannerViewDelegat
     
     @IBAction func dismiss(){
         self.dismiss(animated: true,completion: nil)
-        print("aasfaa")
     }
     
 }
